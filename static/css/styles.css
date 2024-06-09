@@ -1,0 +1,389 @@
+body {
+    background-color: #FA7070;
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+background-image: url("data:image/svg+xml,%3Csvg width='42' height='44' viewBox='0 0 42 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Page-1' fill='none' fill-rule='evenodd'%3E%3Cg id='brick-wall' fill='%23c14429' fill-opacity='0.4'%3E%3Cpath d='M0 0h42v44H0V0zm1 1h40v20H1V1zM0 23h20v20H0V23zm22 0h20v20H22V23z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/*---------------------------------------------- */
+.text-container {
+  overflow: hidden;
+  max-height: 3.2em; /* Limit text to two lines (approx) */
+  position: relative;
+  line-height: 1.8em; /* Adjust according to your font size */
+  transition: max-height 0.3s ease;
+}
+.text-container.expanded {
+  max-height: none;
+}
+.show-more {
+  cursor: pointer;
+  color: hsl(248, 32%, 49%, 0.9);
+  text-decoration: none;
+  font-size: 13px;
+}
+/* --------------------------------------------*/
+
+.tool-same-line {
+display: inline;
+}
+.bold-text {
+  font-weight: 700;
+}
+
+.thin-text {
+  font-weight: 100;
+  color: hsl(248, 32%, 49%);
+}
+
+.text-apart-box {
+  display:flex;
+  justify-content: space-between;
+}
+.green-text {
+  color: hsl(154, 59%, 51%);
+}
+
+.secondary-header {
+  color: hsl(248, 32%, 49%);
+}
+
+.preview-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+/* ---------------- login card -------------- */
+.navbar-brand {
+  color: white;
+}
+
+.expand-field {
+ color: hsl(154, 59%, 51%);
+ text-decoration: none;
+}
+.admin-body {
+    background-color: #FA7070;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+}
+.login-card {
+   margin: 10%;
+   background-color: white;
+   border-radius: 5%;
+   width: 400px;
+   padding: 50px;
+}
+
+.login-card h1 {
+  text-align: center;
+  margin: 10px;
+}
+
+.login-card label {
+  font-weight: 600;
+}
+
+.login-card input {
+  margin-bottom: 10px;
+}
+
+.large-btn {
+   color: white;
+   background-color: hsl(154, 59%, 51%);
+   box-shadow: 0px 8px 5px hsl(154, 59%, 51%, 0.6);
+   width: 100%;
+}
+
+.large-btn:hover {
+  background-color: green;
+  color: white;
+}
+.error-border {
+    border: 1px solid red;
+}
+
+.error {
+    color: red;
+    text-align: right;
+    font-size: 13px;
+    margin-left: 10px;
+}
+
+/* home page */
+.center-content {
+    width: 90%;
+    margin-left: 11%;
+    margin-bottom: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.message-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 40px;
+  width: 50%;
+  margin: 50px;
+  background-color: white;
+  border: 1px solid #eceff133;
+  border-radius: 15px;
+  box-shadow: 0px 8px 5px red;
+  color: hsl(249, 10%, 26%);
+  font-size: 50px;
+}
+
+/* ----------port-cards---------- */
+
+.card {
+  margin: 10px 4px;
+  min-width: 18rem;
+  max-width: 18rem;
+  box-shadow: 0px 8px 5px hsl(246, 25%, 77%, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.circular-avatar {
+   margin: 5px;
+   width: 80%;
+   border-radius: 50%;
+}
+/* ----------------------*/
+
+.contact-header {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items:center;
+}
+
+.huge-card {
+    width: 60%;
+    padding: 30px;
+    min-width: 300px;
+    margin: 100px;
+    box-shadow: 0px 8px 5px ;
+    background-color: white;
+    border-radius: 25px;
+    color: hsl(249, 10%, 26%);
+    margin-left: 20%;
+    margin-top: 5%;
+}
+
+hr {
+    background-color: hsl(246, 25%, 77%, 0.3);
+    height: 2px;
+    width: 100%;
+}
+
+.stars {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+}
+
+.golden-star {
+    color: #FFD700;
+}
+
+.grey-star {
+    color: hsl(249, 10%, 26%, 0.2) ;
+}
+
+.main-info  {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.expansion-header {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 15px;
+    color: black;
+    cursor: pointer;
+}
+
+h5 {
+    color: hsl(154, 59%, 51%);
+    font-weight: 100;
+}
+
+h6 {
+    color: hsl(0, 100%, 74%) ;
+}
+.expansion-header .icon {
+    text-align: center;
+    background-color: hsl(154, 59%, 51%);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 20px;
+    transition: transform 0.3s ease;
+    color: white;
+}
+
+.green-icon {
+    color: white;
+    background-color: hsl(154, 59%, 51%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 20px;
+}
+.expansion-content {
+    padding: 5px;
+    display: none;
+}
+
+.small-img {
+    width: 30%;
+    border-radius: 50%;
+    margin: 20px;
+    border: 1px solid hsl(248, 32%, 49%, 0.9);
+    box-shadow:0px 10px 4px hsl(248, 32%, 49%, 0.3);
+}
+
+.section-title {
+    font-size: 18px;
+    color: hsl(248, 32%, 49%);
+}
+.tile {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    justify-content: start;
+}
+
+.tile > * {
+    margin: 3px;
+}
+
+.tile > span {
+    color: hsl(154, 59%, 51%)
+}
+
+.outer-wrapper {
+   margin: 50px 20px 0 20px;
+}
+
+.table-wrapper {
+     height: 500px;
+     width: 100%;
+     overflow-x: auto;
+     overflow-y: auto;
+}
+th {
+   position: sticky;
+   top: 0px;
+   background-color: blue;
+   font-size: 15px;
+}
+
+.toggle-btn {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    color: white;
+    background-color: red;
+    margin: 3px;
+}
+
+td {
+  font-size: 14px;
+}
+
+.circular-btn {
+   border-radius: 50%;
+}
+
+.form-heading {
+  background-color: hsl(248, 32%, 49%);
+  color: white;
+  margin: 12px;
+  padding: 12px;
+  width: 450px;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 15px;
+  box-shadow: 0px 8px 5px hsl(248, 32%, 49%, 0.5);
+}
+
+.form-error {
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items: center;
+  color: red;
+  width: 100%;
+  font-size: 15px;
+}
+
+.form-error i {
+   margin-bottom: 4px;
+   font-size: 40px;
+}
+
+.navbar {
+   background-color: hsl(248, 32%, 49%);
+}
+
+.offcanvas{
+  background-color: hsl(248, 32%, 49%);
+}
+.edit-btn {
+  color: hsl(248, 32%, 49%);
+}
+.form-container {
+  margin: 30px;
+  width: 450px;
+  background-color: white;
+  padding: 20px;
+  overflow:auto;
+  border-radius: 20px;
+}
+.form-outer {
+    position: relative;
+    display: flex;
+    width: 100%;
+}
+
+.form-outer form {
+   width: 100%;
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    transition: 0.5s ease-in-out;
+}
+
+.delete-btn {
+  margin: 3px;
+  background-color: hsl(0, 100%, 74%);
+}
+
+.add-btn {
+  margin: 3px;
+  background-color: hsl(248, 32%, 49%);
+  color: white;
+}
+
+.btns-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+}

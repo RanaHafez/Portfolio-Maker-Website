@@ -1,0 +1,26 @@
+{% extends "forms/forms_layout.html" %}
+{% from 'bootstrap5/form.html' import render_form %}
+
+{% block content %}
+<div class="login-card">
+<form method="POST" action='{{ action }}' novalidate>
+    <!-- Display flash messages -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+         <div class="form-error border-bottom border-danger">
+           <i class="fas fa-exclamation-triangle"></i>
+            <ul>
+            {% for message in messages %}
+                <p> {{ message }}</p>
+            {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    {% endwith %}
+<h1>Admin {{ msg }}</h1>
+     {{ form.csrf_token }}
+     {{ render_form(form) }}
+</form>
+</div>
+
+{% endblock content %}

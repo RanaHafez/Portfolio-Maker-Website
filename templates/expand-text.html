@@ -1,0 +1,8 @@
+<div id="text-{{ field_name }}-{{ project_id }}" class="text-container">
+    {% if field_heading %}
+    <span class="secondary-header">{{ field_heading }}:</span> {{ field_info }}
+    {% else %}
+    {{ field_info }}
+    {% endif %}
+</div>
+<span id="toggle-{{ field_name }}-{{ project_id }}" class="show-more ">Show More</span>

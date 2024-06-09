@@ -1,0 +1,191 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+{% if user %}
+   <div class="huge-card">
+
+      <div class="contact-header">
+         <span>{{ user.country }}</span>
+         <div class="expansion-tile">
+            <div class="expansion-header">
+               <span class="icon">+</span>
+            </div>
+            <div class="expansion-content">
+               <div class="tile">
+                  <span><i class="fa-solid fa-envelope"></i></span>
+                  <p>{{ user.email }}</p>
+               </div>
+
+               <div class="tile">
+                  <span><i class="fa-solid fa-phone"></i></span>
+                  <p>{{ user.phone }}</p>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <div class="main-info">
+         <h1>{{ user.name }}</h1>
+         <h5>{{ user.job_title }}</h5>
+         <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" class="small-img">
+         <p class="section-title">Summary</p>
+         <p>{{ user.summary }}</p>
+         <hr>
+
+          {% if user.educations %}
+         <div>
+            <div class="container text-center">
+               <p class="section-title">Education</p>
+               <div class="row text-start ">
+                  {% for education in user.educations %}
+                 <div class="col-sm-12 col-lg-6 div-margin" style="font-size: 14px; margin-bottom: 20px;">
+                  <h6>{{ education.degree }} Degree in {{ education.field_of_study }}</h6>
+                  <p>{{ education.institution }} | {{ education.start_date.year }} - {{ education.end_date.year }}</p>
+                  {% with project_id=education.education_id, field_name="EducationDescription", field_info=education.description, field_heading="Description"%}
+                        {% include  "expand-text.html" %}
+                  {% endwith %}
+
+                  {% with project_id=education.education_id, field_name="EducationHonors", field_info=education.honors, field_heading="Honors"%}
+                        {% include  "expand-text.html" %}
+                  {% endwith %}
+                 </div>
+                 {% endfor %}
+               </div>
+             </div>
+
+         </div>
+         <hr>
+          {% endif %}
+
+
+          {% if user.experiences %}
+
+          <div>
+            
+            <div class="container">
+               <p class="section-title text-center">Experience</p>
+               <div class="row text-start">
+                  {% for experience in user.experiences %}
+                 <div class="col-lg-6">
+                     <div class="text-apart-box">
+                         <h6 class="bold-text">
+                             {{ experience.job_title }}
+                         </h6>
+                         <p class="thin-text">{{ experience.start_date.year }} - {{ experience.end_date.year }}</p>
+                     </div>
+                     <p>
+                         {{ experience.company }}
+                         {% if experience.is_current %}
+                             <span class="green-text">, currently working here</span>
+                         {% endif %}
+                     </p>
+
+                     {% with project_id=experience.experience_id, field_name="ExperienceDescription", field_info=experience.description, field_heading="Description"%}
+                        {% include  "expand-text.html" %}
+                     {% endwith %}
+
+                     {% with project_id=experience.experience_id, field_name="ExperienceResponsibilites", field_info=experience.responsibilities, field_heading="Responsibilites"%}
+                        {% include  "expand-text.html" %}
+                     {% endwith %}
+
+                     {% with project_id=experience.experience_id, field_name="ExperienceAchievements", field_info=experience.achievements, field_heading="Achievements"%}
+                        {% include  "expand-text.html" %}
+                     {% endwith %}
+
+                 </div>
+                 {% endfor %}
+               </div>
+             </div>
+         </div>
+
+         <hr>
+          {% endif %}
+
+          {% if user.skills %}
+         <div>
+            <div class="container text-center">
+               <p class="section-title">Skills</p>
+               <div class="row">
+            {% for skill in user.skills %}
+            <div class="col">
+               <h6>{{ skill.skill_name }}</h6>
+               <p>{{ skill.years_of_experience }} Years of Experience</p>
+
+               <div class="stars">
+                  {% for star in range(skill.proficiency) %}
+                  <p><i class="fa-solid fa-star golden-star"></i></p>
+                  {% endfor %}
+                  {% for star in range(5 - skill.proficiency) %}
+                  <p class="grey-star"><i class="fa-solid fa-star"></i></p>
+                  {% endfor %}
+               </div>
+               
+            </div>
+            {% endfor %}
+         </div>
+            </div>
+
+         </div>
+         <hr>
+          {% endif %}
+          {% if user.projects %}
+         <div class="container">
+            <p class="section-title text-center">Projects</p>
+            <div class="row text-start">
+               {% for project in user.projects %}
+                <div class="col-lg-12" style="font-size: 14px;">
+                    <div class="text-apart-box">
+                        <h6 class="bold-text"> <a href="{{ project.project_url }}"><i class="fa-solid fa-link"></i></a> {{ project.project_title }}</h6>
+                        <p> {{ project.start_date.year }} - {{ project.end_date.year }}</p>
+                    </div>
+
+                    <p><span style="this-text">Project Type:</span>
+                        {{ project.project_type }}
+
+                    </p>
+
+                        {% with project_id=project.project_id, field_name="ProjectDescription", field_info=project.description, field_heading="Description"%}
+                        {% include  "expand-text.html" %}
+                        {% endwith %}
+
+
+                        {% with project_id=project.project_id, field_name="ProjectObjectives", field_info=project.objectives, field_heading="Objectives"%}
+                        {% include  "expand-text.html" %}
+                        {% endwith %}
+
+                         {% with project_id=project.project_id, field_name="ProjectCollaborators", field_info=project.collaborators, field_heading="Collaborators"%}
+                        {% include  "expand-text.html" %}
+                        {% endwith %}
+
+                    {% if project.project_achievements %}
+                    <h6>Achievements</h6>
+                    <ul>
+                      {% for achievement in project.project_achievements %}
+                        <li>
+                            <div class="text-apart-box">
+                                <span class="secondary-header">Achievement {{ achievement.achievement_id }}: </span>
+                                <p>{{ achievement.date_achieved }}</p>
+                            </div>
+                            <p><span class="secondary-header">Description: </span>{{ achievement.achievement_description }}</p>
+                            <p><span class="secondary-header">Impact: </span>{{ achievement.impact }}</p>
+                       <p class="secondary-header tool-same-line">Tools</p>
+                       {% for tool in achievement.achievement_tools %}
+                        <p class="tool-same-line">{{ tool.tool_name }}, </p>
+                       {% endfor %}
+                        </li>
+                      {% endfor %}
+                    </ul>
+                    <hr>
+                  {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+         </div>
+          {% endif %}
+      </div>
+
+   </div>
+
+{% endif %}
+{% endblock %}

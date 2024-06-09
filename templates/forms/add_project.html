@@ -1,0 +1,117 @@
+{% extends "forms/forms_layout.html" %}
+{% from 'bootstrap5/form.html' import render_field %}
+
+{% block content %}
+
+<div class="form-heading">
+    <h3>Add {{ msg }}</h3>
+</div>
+<div class="form-container">
+        <form method="POST" action="{{ action }}" novalidate>
+            {{ form.csrf_token }}
+            {{ render_field(form.project_title) }}
+            {{ render_field(form.description) }}
+            {{ render_field(form.project_type) }}
+            {{ render_field(form.company) }}
+            {{ render_field(form.start_date) }}
+            {{ render_field(form.end_date) }}
+            {{ render_field(form.objectives) }}
+            {{ render_field(form.collaborators) }}
+            {{ render_field(form.project_url) }}
+            {{ render_field(form.outcomes) }}
+
+        <div id="achievements">
+            {% for subform in form.achievements %}
+            <div class="achievement border p-3 mb-3">
+                {{ subform.csrf_token }}
+                {{ render_field(subform.achievement_description) }}
+                {{ render_field(subform.date_achieved) }}
+                {{ render_field(subform.impact) }}
+
+                <div class="tools">
+                    <h4>Tools</h4>
+                    {% for tool_form in subform.tools %}
+                    {{ tool_form.csrf_token }}
+                    {{ render_field(tool_form.tool_name) }}
+                    {% endfor %}
+                </div>
+                <button type="button" class="btn btn-secondary add-tool add-btn">Add Tool</button>
+
+            </div>
+            {% endfor %}
+        </div>
+
+            <button type="button" id="add-achievement" class="btn btn-secondary add-btn">Add Achievement</button>
+            {{ render_field(form.submit) }}
+        </form>
+    </div>
+<script
+  src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+  crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function() {
+        var achievementIndex = {{ form.achievements|length }};
+        var toolIndex = 1;
+
+        $('#add-achievement').click(function() {
+            var achievementHtml = `
+            <div class="achievement border p-3 mb-3">
+                <div class="form-group">
+                    <label for="achievements-${achievementIndex}-achievement_description">Achievement Description</label>
+                    <textarea name="achievements-${achievementIndex}-achievement_description" id="achievements-${achievementIndex}-achievement_description" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="achievements-${achievementIndex}-date_achieved">Date Achieved</label>
+                    <input type="date" name="achievements-${achievementIndex}-date_achieved" id="achievements-${achievementIndex}-date_achieved" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="achievements-${achievementIndex}-impact">Impact</label>
+                    <textarea name="achievements-${achievementIndex}-impact" id="achievements-${achievementIndex}-impact" class="form-control"></textarea>
+                </div>
+
+                <div class="tools">
+                    <h4>Tools</h4>
+                    <div class="form-group">
+                        <label for="achievements-${achievementIndex}-tools-${toolIndex}-tool_name">Tool Name</label>
+                        <input type="text" name="achievements-${achievementIndex}-tools-${toolIndex}-tool_name" id="achievements-${achievementIndex}-tools-${toolIndex}-tool_name" class="form-control">
+                    </div>
+                </div>
+                <div class='btns-div'>
+                <button type="button" class="btn add-tool add-btn">Add Tool</button>
+                <button type="button" class="btn btn-danger delete-achievement delete-btn">Delete Achievement</button>
+                </div>
+
+            </div>`;
+            $('#achievements').append(achievementHtml);
+            achievementIndex++;
+        });
+
+        $(document).on('click', '.add-tool', function() {
+            var achievementDiv = $(this).closest('.achievement');
+            var achievementIndex = achievementDiv.index();
+            console.log(achievementIndex);
+            var toolsDiv = achievementDiv.find('.tools');
+            var toolHtml = `
+            <div class="tool form-group">
+                <label for="achievements-${achievementIndex}-tools-${toolIndex}-tool_name">Tool Name</label>
+                <div class="btns-div">
+                <input type="text" name="achievements-${achievementIndex}-tools-${toolIndex}-tool_name" id="achievements-${achievementIndex}-tools-${toolIndex}-tool_name" class="form-control">
+                <button type="button" class="btn btn-danger delete-tool delete-btn"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>`;
+            toolsDiv.append(toolHtml);
+            toolIndex++;
+        });
+
+        $(document).on('click', '.delete-tool', function() {
+            $(this).closest('.tool').remove();
+        });
+
+        $(document).on('click', '.delete-achievement', function() {
+            $(this).closest('.achievement').remove();
+        });
+    });
+</script>
+
+{% endblock content %}

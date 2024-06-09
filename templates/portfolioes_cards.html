@@ -1,0 +1,40 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+<div class="center-content">
+
+{% if all_portfolios|length > 0 %}
+
+   <div class="container text-center">
+       <div class="row">
+    {% for portfolio in all_portfolios %}
+           <div class="card col-lg-3 col-sm-12 col-md-6">
+               <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                    class="circular-avatar" alt="...">
+               <div class="card-body">
+                   <h5 class="card-title">Hi I am {{ portfolio.name }}, <span>{{ portfolio.job_title }}</span></h5>
+                   <p class="preview-text card-text">{{ portfolio.summary }}</p>
+                   <div class="d-grid gap-2">
+                       <a class="btn large-btn" href="{{ url_for('user_details', user_id=portfolio.id) }}">View Portfolio</a>
+                    </div>
+               </div>
+           </div>
+    {% endfor %}
+   </div>
+</div>
+{% else %}
+
+       <div class="message-card">
+           <span>
+            🤷‍♀️
+       </span>
+       <h2>
+           No Portfolio Now!!
+       </h2>
+       </div>
+
+  
+{% endif %}
+</div>
+{% endblock content %}
